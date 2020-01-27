@@ -86,7 +86,10 @@ apiRoutes.post("/reminder", VerifyToken, async function(req, res) {
   let htmlbody = require('./emails/confirm' + req.body.subcategory + '.html');
 
   let mailOptions = {
-    from: '"KTH Bibliotekets löftesinsamling" <noreply@ref.lib.kth.se>',
+    from: {
+     name: process.env.MAILFROM_NAME,
+     address: process.env.MAILFROM_ADDRESS
+    },
     to: req.body.email,
     subject: 'Här kommer information om ditt lämnade löfte.',
     html: htmlbody,
