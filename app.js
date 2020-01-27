@@ -91,7 +91,7 @@ apiRoutes.post("/reminder", VerifyToken, async function(req, res) {
      address: process.env.MAILFROM_ADDRESS
     },
     to: req.body.email,
-    subject: 'Här kommer information om ditt lämnade löfte.',
+    subject: process.env.MAILFROM_SUBJECT,
     html: htmlbody,
     generateTextFromHTML: true
   };
