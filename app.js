@@ -44,7 +44,7 @@ apiRoutes.get("/vote/:eventid",cors(), function(req , res, next){
     WHERE events.id = ?`
 
     let currentVotes = {};
-    connection.query(sql, [req.params.eventid], function (error, results, fields) {
+    pool.query(sql, [req.params.eventid], function (error, results, fields) {
         if (error) throw error;
         results.forEach(function(row) {
           currentVotes[row.type] = row.votes;
@@ -71,7 +71,7 @@ apiRoutes.post("/vote", function(req, res) {
               SET votes = votes + 1
               WHERE a.eventid = ?
               AND b.type = ?`
-    connection.query(sql, [req.body.eventid,req.body.category], function (error, results, fields) {
+    pool.query(sql, [req.body.eventid,req.body.category], function (error, results, fields) {
         if (error) throw error;
     });
     res.json({'result': 'vote emitted'});
