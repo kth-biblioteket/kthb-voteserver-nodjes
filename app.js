@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
 const fs=require('fs');
 
-const connection = require("./db.js");
+const pool = require("./db.js");
 const VerifyToken = require('./verifytoken');
 
 const app = express();
